@@ -39,5 +39,5 @@ workflows:
     jobs:
       - say-hello
       - job-2:
-        reuires:
-          - b: failed
+        requires:
+          say-hello: failed
