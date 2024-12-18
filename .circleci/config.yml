@@ -21,6 +21,15 @@ jobs:
       - run:
           name: "Say hello"
           command: "sleep 120"
+  job-2:
+    docker:
+      - image: cimg/base:current
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      - run:
+          name: "Say hello"
+          command: "echo hello"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -29,3 +38,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+      - job-2:
+        reuires:
+          - b: failed
