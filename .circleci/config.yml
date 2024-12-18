@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "sleep 120"
+          command: "sleep 10"
   job-2:
     docker:
       - image: cimg/base:current
@@ -52,4 +52,4 @@ workflows:
             - say-hello
       - job-3:
           requires:
-            - job-2: failed
+            - say-hello: failed
