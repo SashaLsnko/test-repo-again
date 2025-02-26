@@ -19,6 +19,8 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
+          environment:
+            - FOO=BAR
           name: "Say hello"
           command: "sleep 120"
 
