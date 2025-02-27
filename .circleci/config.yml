@@ -39,4 +39,4 @@ workflows:
           serial-group: foo1
       - notify-failed:
           requires:
-            - deploy: sucess
+            - deploy: success
