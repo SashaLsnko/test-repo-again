@@ -25,7 +25,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
-          name: "Say hello!"
+          name: "Say hello!!"
           command: "sleep 120"
 
 # Orchestrate jobs using workflows
