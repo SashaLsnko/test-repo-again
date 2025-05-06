@@ -40,7 +40,7 @@ workflows:
       - notify-failed:
           requires:
             - deploy: success
- daily-run-workflow:
+  daily-run-workflow:
     triggers:
       - schedule:
           # Every day, at 19:15.
