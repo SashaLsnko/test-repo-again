@@ -41,5 +41,4 @@ workflows:
           requires:
             - deploy: success
 
-    jobs:
-      - say-hello
+    
