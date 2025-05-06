@@ -40,14 +40,6 @@ workflows:
       - notify-failed:
           requires:
             - deploy: success
-  daily-run-workflow:
-    triggers:
-      - schedule:
-          # Every day, at 19:15.
-          cron: "15 19 * * *"
-          filters:
-            branches:
-              only:
-                - my-scheduled-branch
+
     jobs:
       - say-hello
