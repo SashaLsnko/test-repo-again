@@ -39,7 +39,7 @@ workflows:
             pattern: "/.*/nodeploy/.*/"
             value: << pipeline.git.branch >>
         - matches:
-            pattern: "^snyk-.*$"
+            pattern: "^snyk-.*$" 
             value: << pipeline.git.branch >>
     jobs:
       - say-hello
