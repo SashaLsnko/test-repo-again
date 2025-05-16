@@ -38,9 +38,17 @@ workflows:
         - matches:
             pattern: "/.*/nodeploy/.*/"
             value: << pipeline.git.branch >>
+        - matches:
+            pattern: "^snyk-.*$"
+            value: << pipeline.git.branch >>
     jobs:
       - say-hello
   build-deploy-main:
-    when: pipeline.git.branch == "main"
+    when: 
+      or:
+        - pipeline.git.branch == "main"
+        - matches:
+            pattern: "/.*/nodeploy/.*/"
+            value: << pipeline.git.branch >>
     jobs:
       - say-hello
