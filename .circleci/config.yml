@@ -46,9 +46,11 @@ workflows:
   build-deploy-main:
     when: 
       or:
-        - pipeline.git.branch == "main"
         - matches:
             pattern: "/.*/nodeploy/.*/"
+            value: << pipeline.git.branch >>
+        - matches:
+            pattern: "^develop$"
             value: << pipeline.git.branch >>
     jobs:
       - say-hello
