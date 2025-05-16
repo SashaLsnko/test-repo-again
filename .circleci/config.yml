@@ -42,7 +42,7 @@ workflows:
             pattern: "^snyk-.*$"
             value: << pipeline.git.branch >>
         - matches:
-            pattern: "^hello-.*$"
+            pattern: "^helloo-.*$"
             value: << pipeline.git.branch >>
     jobs:
       - say-hello
