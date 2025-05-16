@@ -50,7 +50,7 @@ workflows:
             pattern: "/.*/nodeploy/.*/"
             value: << pipeline.git.branch >>
         - matches:
-            pattern: "^develop$"
+            pattern: "^develop$" 
             value: << pipeline.git.branch >>
     jobs:
       - say-hello
