@@ -34,9 +34,10 @@ workflows:
   # to validate snyk, dependabot, and release PRs
   build-simple:
     when:
-      matches:
-        pattern: "/.*\/nodeploy\/.*/"
-        value: << pipeline.git.branch >>
+      or:
+        - matches:
+            pattern: "/.*/nodeploy/.*/"
+            value: << pipeline.git.branch >>
     jobs:
       - say-hello
   build-deploy-main:
