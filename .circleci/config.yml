@@ -35,16 +35,8 @@ workflows:
   build-simple:
     when:
       matches:
-        pattern: "^snyk-|^dependabot\/|^release\/|^.*/nodeploy\/|^.*\/noprdeploy\/"
+        pattern: "^snyk-|^dependabot/.*/|^release/|^.*/nodeploy/|^.*/noprdeploy/$"
         value: << pipeline.git.branch >>
-    jobs:
-      - say-hello
-  build:
-    when:
-      not:
-        matches:
-          pattern: "^snyk-|^dependabot\/|^release\/|^.*\/nodeploy\/|^.*\/noprdeploy\/|^develop$|^master$|^main$"
-          value: << pipeline.git.branch >>
     jobs:
       - say-hello
   build-deploy-main:
