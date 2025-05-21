@@ -34,7 +34,7 @@ workflows:
     when:
       or:
         - matches:
-            pattern: ".*/nodeploy/.*"
+            pattern: ".*/nodeploy/.*" 
             value: << pipeline.git.branch >>
         - matches:
             pattern: ".*/noprdeploy/.*"
