@@ -44,7 +44,7 @@ workflows:
             value: << pipeline.git.branch >>
         - matches:
             pattern: "^develop$"
-            value: << pipeline.git.branch >>
+            value: << pipeline.git.branch >> 
     jobs:
       - say-hello
   build-deploy-main:
