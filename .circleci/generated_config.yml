@@ -4,11 +4,8 @@ version: 2.1
 # the results of the path-filtering orb
 parameters:
   run-build-service-1-job:
-    type: boolean
-    default: true
-  run-build-service-2-job:
-    type: boolean
-    default: true
+    type: string
+    default: "generated value"
   another-param:
     type: string
     default: "hehe helllo"
@@ -35,7 +32,6 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run: echo <<pipeline.parameters.run-build-service-1-job>>
-      - run: echo <<pipeline.parameters.run-build-service-2-job>>
       - run: echo <<pipeline.parameters.another-param>>
 
 
