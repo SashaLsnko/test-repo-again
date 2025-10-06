@@ -5,7 +5,7 @@ version: 2.1
 parameters:
   run-build-service-1-job:
     type: string
-    default: "generated value"
+    default: "continuation value"
   another-param:
     type: string
     default: "hehe helllo"
