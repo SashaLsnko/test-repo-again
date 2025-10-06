@@ -45,6 +45,6 @@ jobs:
 workflows:
   the-workflow:
      jobs:
-       say-hello
+       - say-hello
      
   
