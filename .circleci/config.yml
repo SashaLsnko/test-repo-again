@@ -40,7 +40,7 @@ jobs:
       - checkout
       - run: echo <<pipeline.parameters.run-build-service-1-job>>
       - continuation/continue:
-          configuration_path: generated_config.yml # use newly generated config to continue the pipeline
+          configuration_path: ./generated_config.yml # use newly generated config to continue the pipeline
 
 workflows:
   my-setup-workflow:
