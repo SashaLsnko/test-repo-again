@@ -5,10 +5,10 @@ version: 2.1
 parameters:
   run-build-service-1-job:
     type: boolean
-    default: false
+    default: true
   run-build-service-2-job:
     type: boolean
-    default: false
+    default: true
   another-param:
     type: string
     default: "hehe helllo"
