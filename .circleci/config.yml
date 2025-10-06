@@ -39,7 +39,6 @@ jobs:
       - run: ls
       - continuation/continue:
           configuration_path: .circleci/generated_config.yml # use newly generated config to continue the pipeline
-          parameters: '{"run-build-service-1-job":"continuation value}'
 
 workflows:
   my-setup-workflow:
