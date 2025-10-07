@@ -37,7 +37,9 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello:
-          lalaparam: "a parammmm"
+          matrix:
+            parameters:
+              lalaparam: ["a parammmm", "snothssdfsdf"]
       - deploy:
           serial-group: foo1
       - notify-failed:
