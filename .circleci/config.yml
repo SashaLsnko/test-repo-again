@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - run: echo <<pipeline.parameters.lalaparam>>
+      - run: echo <<parameters.lalaparam>>
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
