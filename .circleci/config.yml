@@ -41,7 +41,7 @@ workflows:
             parameters:
               lalaparam: []
       - deploy:
-          serial-group: foo1
+          serial-group: foo2
       - notify-failed:
           requires:
             - deploy: success
