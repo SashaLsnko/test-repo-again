@@ -12,7 +12,7 @@ jobs:
     type: no-op
     
   say-hello:
-    machine: true
+    machine: yes
     steps:
       - checkout
       - run:
