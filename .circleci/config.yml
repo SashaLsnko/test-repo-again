@@ -39,7 +39,7 @@ workflows:
       - say-hello:
           matrix:
             parameters:
-              lalaparam: ["a parammmm", "snothssdfsdf"]
+              lalaparam: []
       - deploy:
           serial-group: foo1
       - notify-failed:
