@@ -37,7 +37,8 @@ workflows:
     jobs:
       - job-1
       - job-2:
-          serial-group: foo1
+          requires: 
+            - job-1
       - job-3:
           requires:
             - job-2: 
