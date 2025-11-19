@@ -11,7 +11,7 @@ jobs:
   notify-failed:
     type: no-op
     
-  say-hello:
+  job-1:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
     docker:
@@ -35,9 +35,11 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
-      - deploy:
+      - job-1
+      - job-2:
           serial-group: foo1
-      - notify-failed:
+      - job-3:
           requires:
-            - deploy: success
+            - job-2: 
+                - canceled
+                - failed
