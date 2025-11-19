@@ -5,11 +5,6 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  job-2:
-    type: no-op
-
-  job-3:
-    type: no-op
     
   job-1:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -35,11 +30,14 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - job-1
-      - job-2:
+      - job-1:
+          name: first
+      - job-1:
+          name: second
           requires: 
             - job-1
-      - job-3:
+      - job-1:
+          name: third
           requires:
             - job-2: 
                 - canceled
