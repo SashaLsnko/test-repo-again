@@ -35,10 +35,10 @@ workflows:
       - job-1:
           name: second
           requires: 
-            - job-1
+            - first
       - job-1:
           name: third
           requires:
-            - job-2: 
+            - second: 
                 - canceled
                 - failed
