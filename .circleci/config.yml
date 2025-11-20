@@ -5,13 +5,9 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  deploy:
+  no-op-job:
     type: no-op
-
-  notify-failed:
-    type: no-op
-    
-  say-hello:
+  job-1:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
     docker:
@@ -26,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "exit 0"
+          command: "sleep 10" 
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -35,9 +31,40 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
-      - deploy:
-          serial-group: foo1
-      - notify-failed:
+      - job-1:
+          name: first
+      - job-1:
+          name: second - second
+          requires: 
+            - first: 
+                - canceled
+                - failed
+      - job-1:
+          name: second
+          requires: 
+            - first
+      - job-1:
+          name: third
           requires:
-            - deploy: success
+            - second: 
+                - canceled
+                - failed
+      - no-op-job:
+          name: fourth
+          requires:
+            - third: 
+                - canceled
+                - failed
+      - no-op-job:
+          name: fifth
+          requires:
+            - third: 
+                - canceled
+                - failed
+      - no-op-job:
+          name: sixth
+          requires:
+            - fifth: 
+                - canceled
+                - failed
+          
