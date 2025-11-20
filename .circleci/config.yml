@@ -22,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "exit 0"
+          command: "sleep 120" 
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -33,6 +33,12 @@ workflows:
     jobs:
       - job-1:
           name: first
+      - job-1:
+          name: second - second
+          requires: 
+            - first: 
+                - canceled
+                - failed
       - job-1:
           name: second
           requires: 
