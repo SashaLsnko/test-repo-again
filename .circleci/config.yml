@@ -5,7 +5,8 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-    
+  no-op-job:
+    type: no-op
   job-1:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
@@ -42,3 +43,22 @@ workflows:
             - second: 
                 - canceled
                 - failed
+      - no-op-job:
+          name: fourth
+          requires:
+            - third: 
+                - canceled
+                - failed
+      - no-op-job:
+          name: fifth
+          requires:
+            - third: 
+                - canceled
+                - failed
+      - no-op-job:
+          name: sixth
+          requires:
+            - fifth: 
+                - canceled
+                - failed
+          
