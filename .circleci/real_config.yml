@@ -25572,6 +25572,54 @@ jobs:
             echo "final_job_line_0236: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
             echo "final_job_line_0237: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
+  noop_1:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 1
+          command: echo "Intermediate job 1 complete"
+
+  noop_2:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 2
+          command: echo "Intermediate job 2 complete"
+
+  noop_3:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 3
+          command: echo "Intermediate job 3 complete"
+
+  noop_4:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 4
+          command: echo "Intermediate job 4 complete"
+
+  noop_5:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 5
+          command: echo "Intermediate job 5 complete"
+
+  noop_6:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: No-op 6
+          command: echo "Intermediate job 6 complete"
+
 workflows:
   test-workflow:
     jobs:
@@ -27849,8 +27897,8 @@ workflows:
           name: accelerator-sync-arm64
       - job_31:
           name: accelerator-sync-amd64
-      - job_32:
-          name: Post workflow processing
+      - noop_1:
+          name: intermediate_noop_1
           requires:
             - packageregistry-dal-arm64
             - dast-results-ingestor-fips
@@ -28021,6 +28069,9 @@ workflows:
             - forensic-detection-ingestor-amd64
             - objectstore-operator-fips
             - diskanalyzer-coordinator-amd64
+      - noop_2:
+          name: intermediate_noop_2
+          requires:
             - wiz-admission-controller-fips-arm64
             - mssp-auth-fips
             - ops-releasebot-arm64
@@ -28190,6 +28241,9 @@ workflows:
             - webhook-manager-arm64
             - issue-evidence-dal-arm64
             - slack-configuration-token-rotator-fips
+      - noop_3:
+          name: intermediate_noop_3
+          requires:
             - azure-fetcher-amd64
             - remediation-ingestor-amd64
             - fetcher-triggers-dal-amd64
@@ -28359,6 +28413,9 @@ workflows:
             - diskanalyzer-provisioner-azure-fips
             - tenant-deleter-arm64
             - report-operator-arm64
+      - noop_4:
+          name: intermediate_noop_4
+          requires:
             - auth-pretoken-amd64
             - onprem-agent-oob-publish-windows-amd64
             - comment-dal-amd64
@@ -28528,6 +28585,9 @@ workflows:
             - forensicinsights-dal-arm64
             - ops-deploybot-arm64
             - diskanalyzer-provisioner-amd64
+      - noop_5:
+          name: intermediate_noop_5
+          requires:
             - browser-extension-dal-fips
             - ops-forcemergebot-fips
             - ops-terraformbot-amd64
@@ -28697,6 +28757,9 @@ workflows:
             - report-run-executor-arm64
             - connector-dal-arm64
             - ops-sensor-rolloutbot-fips
+      - noop_6:
+          name: intermediate_noop_6
+          requires:
             - openai-fetcher-fips
             - db-monitor-arm64
             - slack-configuration-token-rotator-amd64
@@ -28866,3 +28929,12 @@ workflows:
             - scansource-operator-arm64
             - outpost-lite-runner-vcs-fips
             - comment-dal-arm64
+      - final_job:
+          name: Post workflow processing
+          requires:
+            - intermediate_noop_1
+            - intermediate_noop_2
+            - intermediate_noop_3
+            - intermediate_noop_4
+            - intermediate_noop_5
+            - intermediate_noop_6
