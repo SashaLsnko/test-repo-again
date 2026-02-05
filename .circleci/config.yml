@@ -51,6 +51,12 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+      - appr-1:
+          type: approval
+      - appr-2:
+          type: approval
+      - appr-3:
+          type: approval
       - sleep-job:
           name: first-sleep
       - sleep-job:
