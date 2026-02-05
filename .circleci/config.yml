@@ -55,10 +55,11 @@ workflows:
           name: first-sleep
       - sleep-job:
           name: second-sleep
-          requires: first-sleep
+          requires:
+            - first-sleep
       - deploy:
           serial-group: foo1
       - notify-failed:
           requires:
             - deploy: success
-            - sleep-job: success
+            - second-sleep: success
