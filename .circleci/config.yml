@@ -67,6 +67,8 @@ workflows:
             - first-sleep
       - deploy:
           serial-group: foo1
+          requires:
+            - appr-2: success
       - notify-failed:
           requires:
             - deploy: success
