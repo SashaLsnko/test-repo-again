@@ -59,6 +59,8 @@ workflows:
           type: approval
       - sleep-job:
           name: first-sleep
+          requires:
+            - appr-3
       - sleep-job:
           name: second-sleep
           requires:
