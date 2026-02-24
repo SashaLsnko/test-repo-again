@@ -65,6 +65,9 @@ workflows:
           name: second-sleep
           requires:
             - first-sleep
+      - appr-4:
+          type: approval
+          requires: sleep-job
       - deploy:
           serial-group: foo1
           requires:
