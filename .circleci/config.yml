@@ -50,7 +50,9 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
+      - say-hello:
+          when:
+            equal: true
       - appr-1:
           type: approval
       - appr-2:
