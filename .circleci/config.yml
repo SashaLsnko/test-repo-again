@@ -7,6 +7,8 @@ version: 2.1
 jobs:
   deploy:
     type: no-op
+    when:
+      equal: true
 
   notify-failed:
     type: no-op
@@ -50,9 +52,7 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello:
-          when:
-            equal: true
+      - say-hello
       - appr-1:
           type: approval
       - appr-2:
