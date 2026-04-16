@@ -1,17 +1,17 @@
-version: 2.1
-
-jobs:
+  version: 2.1
+                                                                                                                                                                                                            
+  jobs:                                                                                                                                                                                                     
     sleep-job:                                                                                                                                                                                              
-      docker:     
-        - image: cimg/base:stable
-      resource_class: small
-      serial-group: my-serial-group
-      steps:
+      docker:                                                                                                                                                                                               
+        - image: cimg/base:stable                                                                                                                                                                           
+      resource_class: small                                                                                                                                                                                 
+      steps:                                                                                                                                                                                                
         - run:
             name: Sleep for 10 minutes                                                                                                                                                                      
             command: sleep 600
                                                                                                                                                                                                             
-workflows:      
+  workflows:      
     serial-workflow:
       jobs:
-        - sleep-job
+        - sleep-job:
+            serial-group: my-serial-group
