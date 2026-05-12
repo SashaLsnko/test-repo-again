@@ -45,4 +45,4 @@ workflows:
           serial-group: foo1
       - notify-failed:
           requires:
-            - deploy: rnadom-status
+            - deploy: rnadom-statuss
