@@ -10,6 +10,8 @@ jobs:
 
   notify-failed:
     type: no-op
+
+  make-error-config:
     
   say-hello:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
