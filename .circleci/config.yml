@@ -52,5 +52,5 @@ workflows:
       - notify-failed:
           serial-group: foo1
           requires:
-            - dply
+            - rfgty
   
