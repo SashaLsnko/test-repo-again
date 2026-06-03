@@ -49,4 +49,8 @@ workflows:
           name: rfgty
           requires:
             - qwerty
+      - notify-failed:
+          serial-group: foo1
+          requires:
+            - dply
   
