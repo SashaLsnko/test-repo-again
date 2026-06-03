@@ -33,14 +33,10 @@ job-groups:
     jobs:
       - say-hello:
           name: hello-1
-      - deploy:
-          name: deploy-1
-  test-and-build:
+  dply:
     jobs:
       - deploy:
           name: deploy-2
-      - say-hello:
-          name: hello-2
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -48,12 +44,9 @@ workflows:
   say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
     jobs:
       - build-and-test:
-          name: build-and-test
-      - test-and-build:
-          name: test-and-build
+          name: qwerty
+      - dply:
+          name: rfgty
           requires:
             - build-and-test
-      - notify-failed:
-          serial-group: foo1
-          requires:
-            - test-and-build
+  
