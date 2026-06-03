@@ -53,8 +53,7 @@ workflows:
           name: rfgty
           requires:
             - qwerty
-      - notify-stuff:
-          serial-group: foo1
+      - notify-failed:
           requires:
             - rfgty
   
