@@ -51,8 +51,7 @@ workflows:
       - dply:
           requires:
             - build-and-test
-      - notify-stuff:
-          serial-group: lala
+      - notify-failed:
           requires:
             - dply
   
