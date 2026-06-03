@@ -38,6 +38,10 @@ job-groups:
       - deploy:
           name: deploy-2
 
+  notify-stuff:
+    jobs:
+      - notify-failed
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -49,7 +53,7 @@ workflows:
           name: rfgty
           requires:
             - qwerty
-      - notify-failed:
+      - notify-stuff:
           serial-group: foo1
           requires:
             - rfgty
