@@ -28,16 +28,30 @@ jobs:
           name: "Say hello"
           command: "exit 0"
 
+job-groups:
+  build-and-test:
+    jobs:
+      - say-hello:
+          name: hello-1
+      - deploy:
+          name: deploy-1
+  test-and-build:
+    jobs:
+      - deploy:
+          name: deploy-2
+      - say-hello:
+          name: hello-2
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    max_auto_reruns: 1
-    # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
-      - deploy:
-          serial-group: foo1
-      - notify-failed:
+      - build-and-test
+      - test-and-build:
           requires:
-            - deploy: success
+            - build-and-test
+      - notify-failed:
+          serial-group: foo1
+          requires:
+            - test-and-build
