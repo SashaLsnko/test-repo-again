@@ -40,4 +40,4 @@ workflows:
           serial-group: foo1
       - notify-failed:
           requires:
-            - deploy: success
+            - say-hello: success
