@@ -35,7 +35,7 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
+      - deploy
       - say-hello:
           serial-group: foo1
       - notify-failed:
