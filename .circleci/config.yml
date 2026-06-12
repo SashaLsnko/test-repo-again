@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "exit 0"
+          command: "exit 1"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -36,7 +36,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
-      - deploy:
+      - say-hello:
           serial-group: foo1
       - notify-failed:
           requires:
