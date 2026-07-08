@@ -13,4 +13,4 @@ workflows:
   sleep-workflow:
     jobs:
       - sleep:
-          serial-group: << pipeline.project.slug >>/sleep
+          serial-groups: << pipeline.project.slug >>/sleep
