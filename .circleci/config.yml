@@ -25,6 +25,6 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
-          name: "Say hello"
+          name: "Say hello!"
           command: "exit 0"
 
