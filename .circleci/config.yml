@@ -26,7 +26,6 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "exit 0"
           command: "echo << pipeline.trigger_parameters.webhook.body >>"
 
 # Orchestrate jobs using workflows
