@@ -1,43 +1,36 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  deploy:
-    type: no-op
-
-  notify-failed:
-    type: no-op
-    
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+  job-a:
     docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
       - image: cimg/base:current
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
     steps:
-      # Checkout the code as the first step.
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "exit 0"
+      - run: echo "job-a ran fine"
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
-workflows:
-  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    max_auto_reruns: 1
-    # Inside the workflow, you define the jobs you want to run.
+  job-b-fails:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run: exit 1
+
+  runs-if-group-not-run:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run: echo "my-group never ran"
+
+job-groups:
+  my-group:
     jobs:
-      - say-hello
-      - deploy:
-          serial-group: foo1
-      - notify-failed:
+      - job-a
+      - job-b-fails:
           requires:
-            - deploy: success
+            - job-a
+
+workflows:
+  main:
+    jobs:
+      - my-group
+      - runs-if-group-not-run:
+          requires:
+            - my-group: not_run
