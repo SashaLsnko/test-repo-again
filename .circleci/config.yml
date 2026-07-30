@@ -30,7 +30,8 @@ job-groups:
 workflows:
   main:
     jobs:
-      - my-group
+      - my-group:
+          serial-group: "moo"
       - runs-if-group-not-run:
           requires:
             - my-group: not_run
