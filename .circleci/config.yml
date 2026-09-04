@@ -7,12 +7,10 @@ version: 2
 jobs:
   build:
     type: no-op
-    resource_class: medium
 
   notify-failed:
     type: no-op
-    resource_class: medium
-    
+
   say-hello:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
@@ -29,4 +27,16 @@ jobs:
       - run:
           name: "Say hello!"
           command: "exit 0"
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
+      - say-hello:
+          requires:
+            - build
+      - notify-failed:
+          requires:
+            - say-hello
 
