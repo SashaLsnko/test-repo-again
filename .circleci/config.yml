@@ -7,9 +7,11 @@ version: 2
 jobs:
   build:
     type: no-op
+    resource_class: medium
 
   notify-failed:
     type: no-op
+    resource_class: medium
     
   say-hello:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
