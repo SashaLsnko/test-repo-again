@@ -35,9 +35,11 @@ workflows:
     max_auto_reruns: 1
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - say-hello
+      - say-hello:
+          name: weird long name
       - deploy:
           serial-group: foo1
+          requires: [weid long name]
       - notify-failed:
           requires:
             - deploy: success
