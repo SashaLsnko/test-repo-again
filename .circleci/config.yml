@@ -39,7 +39,7 @@ workflows:
           name: weird long name
       - deploy:
           serial-group: foo1
-          requires: [weid long name]
+          requires: [weird long name]
       - notify-failed:
           requires:
             - deploy: success
