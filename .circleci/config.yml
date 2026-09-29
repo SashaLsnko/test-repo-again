@@ -43,5 +43,10 @@ workflows:
       - appr-job:
           type: approval
       - say-hello:
+          name: first
           requires:
             - appr-job: canceled
+      - say-hello:
+          name: second
+          requires:
+            - first
