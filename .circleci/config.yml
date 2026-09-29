@@ -44,4 +44,4 @@ workflows:
           type: approval
       - say-hello:
           requires:
-            - deploy: canceled
+            - appr-job: canceled
