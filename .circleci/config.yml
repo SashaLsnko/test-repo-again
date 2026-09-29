@@ -41,3 +41,8 @@ workflows:
       - notify-failed:
           requires:
             - deploy: success
+      - appr-job:
+          type: approval
+      - dep-on-appr:
+          requires:
+            - deploy: canceled
