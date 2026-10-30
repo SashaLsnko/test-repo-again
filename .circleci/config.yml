@@ -1,21 +1,26 @@
 version: "2.1"
-
 parameters:
   flag:
     type: boolean
     default: true
-
 jobs:
-  build:
+  runner:
+    parameters:
+      custom-steps:
+        type: steps
+        default: []
     machine: true
     steps:
-      - when:
-          condition:
-            not: false
-          steps:
-            - checkout
+      - checkout
+      - steps: << parameters.custom-steps >>
 
 workflows:
-  my-workflow:
+  main:
     jobs:
-      - build
+      - runner:
+          custom-steps:
+            - when:
+                condition:
+                  equal: << pipeline.parameters.flag >>
+                steps:
+                  - run: echo "test"
