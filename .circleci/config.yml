@@ -11,7 +11,7 @@ jobs:
     steps:
       - when:
           condition:
-            equal: << pipeline.parameters.flag >>
+            not: false
           steps:
             - checkout
 
