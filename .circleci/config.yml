@@ -1,12 +1,17 @@
 version: "2.1"
 
+parameters:
+  flag:
+    type: boolean
+    default: true
+
 jobs:
   build:
     machine: true
     steps:
       - when:
           condition:
-            equal: true
+            equal: << pipeline.parameters.flag >>
           steps:
             - checkout
 
