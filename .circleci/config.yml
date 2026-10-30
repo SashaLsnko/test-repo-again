@@ -6,9 +6,7 @@ jobs:
     steps:
       - when:
           condition:
-            and:
-              - true
-              - or: true
+            equal: true
           steps:
             - checkout
 
