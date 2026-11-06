@@ -1,17 +1,26 @@
-version: 2.1
+version: "2.1"
 
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/base:current
     steps:
       - checkout
-      - when:
-          condition: "foo"
-          steps:
-            - run: echo "this always runs"
+  deploy:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
 
 workflows:
-  main:
+  w:
     jobs:
-      - build
+      - test
+      - deploy:
+          requires:
+            - test
+          context: context-a
+          upstream:
+            test:
+              - success
+              - failed
